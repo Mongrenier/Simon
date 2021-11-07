@@ -17,21 +17,42 @@ const col4Style = document.getElementsByClassName('couleur4');
 const synth = new Tone.PolySynth(Tone.Synth).toDestination();
 const now = Tone.now();
 
-let listeS = [1, 3, 4, 3, 2, 0];
-let i = 5;
-/*--------------------créer liste aléatoire--------------------------*/
-getRandomArbitrary(1,4.9)
-function getRandomArbitrary(min, max) {
-  let tes =  Math.random() * (max - min) + min;
-  alert(tes);
+let listeS = [];
+let speed = 5;
+let randomNum = 0;
+
+
+
+export async function GAME(){
+creationListe(listeS);
+function creationListe (listeAjout){
+	let intvalue = 0;
+	if (listeAjout.length < 1)
+	{
+		randomNum = getRandomArbitrary(1,4.9)
+		intvalue = Math.floor( randomNum );
+		listeAjout.push(intvalue);
+		listeAjout.push(0);
+		jeuxSound(listeAjout);
+		return true;
+	}
+	/*enleve le 0 du tableau*/
+	listeAjout.pop();
+	randomNum = getRandomArbitrary(1,4.9)
+	intvalue = Math.floor( randomNum );
+	listeAjout.push(intvalue);
+	listeAjout.push(0);
+	jeuxSound(listeAjout);
+	
+
 }
-/*----------------------------------------------*/
+
+
 
 
 /*Fait apparaitre les couleurs de la liste au joueur*/
-jeuxSound(listeS);
-function jeuxSound(liste) {
-	liste.forEach((element, i) => {
+async function jeuxSound(liste) {
+	liste.forEach((element, speed) => {
 		setTimeout(function () {
 			finCouleurs();
 			if (element === 1) {
@@ -58,10 +79,21 @@ function jeuxSound(liste) {
 					col4Style[i].style.backgroundColor = 'rgb(94, 0, 94)';
 				}
 			}
-		}, i * 500);
+		}, speed * 500);
 	});
-
 }
+
+
+
+
+/*Nombre aléatoire*/
+function getRandomArbitrary(min, max) {
+  let tes =  Math.random() * (max - min) + min;
+	return tes;
+}
+/*-----------------*/
+
+/*Remet les couleurs par défaut*/
 function finCouleurs() {
 	for (let i = 0; i < col1Style.length; i++) {
 		col1Style[i].style.backgroundColor = 'red';
@@ -76,18 +108,5 @@ function finCouleurs() {
 		col4Style[i].style.backgroundColor = 'purple';
 	}
 }
-/*----------------------------------------------------------------------*/
-
-/*const synth = new Tone.PolySynth(Tone.Synth).toDestination();
-const now = Tone.now()
-synth.triggerAttack("D4", now);
-synth.triggerAttack("F4", now + 0.5);
-synth.triggerAttack("A4", now + 1);
-synth.triggerAttack("C5", now + 1.5);
-synth.triggerAttack("E5", now + 2);
-synth.triggerRelease(["D4", "F4", "A4", "C5", "E5"], now + 4);
-
-document.querySelector('button')?.addEventListener('click', async () => {
-	await Tone.start()
-	console.log('audio is ready')
-})*/
+/*-----------------------------------------*/
+}
