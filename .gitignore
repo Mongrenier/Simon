@@ -54,3 +54,8 @@ Thumbs.db
 # Environnement config #
 ########################
 .env
+
+# Dossier parcel #
+##################
+
+/.parcel-cache
