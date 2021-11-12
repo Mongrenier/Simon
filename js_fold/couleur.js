@@ -7,6 +7,9 @@ const col2 = document.getElementsByClassName('couleur2')[0];
 const col3 = document.getElementsByClassName('couleur3')[0];
 const col4 = document.getElementsByClassName('couleur4')[0];
 
+/*Permet de changer les scores*/
+let toucheMax = document.getElementById("touche");
+let tourMax = document.getElementById("tour");
 /*Permet de changer le style des couleurs (pour plus tard)*/
 const col1Style = document.getElementsByClassName('couleur1');
 const col2Style = document.getElementsByClassName('couleur2');
@@ -21,13 +24,31 @@ let tableauToucheJoueur = [];
 let listeS = [];
 let randomNum = 0;
 let debutPartie = false;
-
+let nombreToucheTotale = 0;
+let nombreTourTotale = 0;
 
 export async function GAME() {
+
+	
 	/*creationListe(listeS);*/
-	ordinateurPlay(listeS);
+	ordinateurPlay();
+
+	/*Odinateur*/
+	  function ordinateurPlay() {
+		if (debutPartie === false) {
+			debutPartie = true;
+			creationListe(listeS);
+			return;
+		}
+		else
+		{
+			creationListe(listeS);
+		}
+		
+	}
 
 	function creationListe(listeAjout) {
+		alert("creation liste");
 		let intvalue = 0;
 		if (listeAjout.length < 1) {
 			randomNum = getRandomArbitrary(1, 4.9);
@@ -35,80 +56,170 @@ export async function GAME() {
 			listeAjout.push(intvalue);
 			listeAjout.push(0);
 			jeuxSound(listeAjout);
-			return true;
+			return;
 		}
-		/*enleve le 0 du tableau*/
-		listeAjout.pop();
-		randomNum = getRandomArbitrary(1, 4.9);
-		intvalue = Math.floor(randomNum);
-		listeAjout.push(intvalue);
-		listeAjout.push(0);
-		jeuxSound(listeAjout);
 	}
 
-	/*Fait apparaitre les couleurs de la liste au joueur*/
-	async function jeuxSound(liste) {
-		await liste.forEach((element, index) => {
-			 setTimeout(function () {
+	/*Le joueur appuie sur le boutton Rouge*/
+	col1.addEventListener("click", () => {
+		if(tableauToucheJoueur.length < 1)
+		{
+			nombreToucheTotale += 1;
+			synth.triggerAttackRelease('B4', '8n');
+			for (let i = 0; i < col1Style.length; i++) {
+				col1Style[i].style.backgroundColor = 'rgb(199, 0, 0)';
+			}
+			setTimeout(function () {
 				finCouleurs();
-				sonEtCouleur(element);
-			}, index * 500);
+				tableauToucheJoueur.push(1);
+				tableauToucheJoueur.push(0);
+				comparaison();
+				return;
+			}, 500)
+		}
+		if (tableauToucheJoueur.length >= 1)
+		{
+			nombreToucheTotale += 1;
+			synth.triggerAttackRelease('B4', '8n');
+			for (let i = 0; i < col1Style.length; i++) {
+				col1Style[i].style.backgroundColor = 'rgb(199, 0, 0)';
+			}
+			setTimeout(function () {
+				finCouleurs();
+				tableauToucheJoueur.pop();
+				tableauToucheJoueur.push(1);
+				tableauToucheJoueur.push(0);
+				comparaison();
+				return;
+			}, 500)
+		}
+
+	});
+
+		/*Le joueur appuie sur le boutton jaune*/
+		col2.addEventListener("click", () => {
+			if(tableauToucheJoueur.length < 1)
+			{
+				nombreToucheTotale += 1;
+				synth.triggerAttackRelease('C6', '8n');
+				for (let i = 0; i < col1Style.length; i++) {
+					col2Style[i].style.backgroundColor = 'rgb(214, 211, 0)';
+				}
+				setTimeout(function () {
+					finCouleurs();
+					tableauToucheJoueur.push(2);
+					tableauToucheJoueur.push(0);
+					comparaison();
+					return;
+				}, 500)
+			}
+			if (tableauToucheJoueur.length >= 1)
+			{
+				nombreToucheTotale += 1;
+				synth.triggerAttackRelease('C6', '8n');
+				for (let i = 0; i < col1Style.length; i++) {
+					col2Style[i].style.backgroundColor = 'rgb(214, 211, 0)';
+				}
+				setTimeout(function () {
+					finCouleurs();
+					tableauToucheJoueur.pop();
+					tableauToucheJoueur.push(2);
+					tableauToucheJoueur.push(0);
+					comparaison();
+					return;
+				}, 500)
+			}
+	
 		});
-	}
-
-	async function ordinateurPlay(listeS) {
-		if (debutPartie === false) {
-			debutPartie = true;
-			creationListe(listeS);
-			return false;
-		}
-		
-	}
-
-	col1.addEventListener("click", function (){
-
-		if (listeS.length === 0){
-			return;
-		}
-		tableauToucheJoueur.push(1);
-		alert(tableauToucheJoueur);
-	});
-
-	col2.addEventListener("click", function (){
-
-		if (listeS.length === 0){
-			return;
-		}
-		tableauToucheJoueur.push(2);
-		alert(tableauToucheJoueur);
-	});
+	
+		/*Le joueur appuie sur le boutton vert*/
+		col3.addEventListener("click", () => {
+			if(tableauToucheJoueur.length < 1)
+			{
+				nombreToucheTotale += 1;
+				synth.triggerAttackRelease('C7', '8n');
+				for (let i = 0; i < col1Style.length; i++) {
+					col3Style[i].style.backgroundColor = 'rgb(0, 99, 0)';
+				}
+				setTimeout(function () {
+					finCouleurs();
+					tableauToucheJoueur.push(3);
+					tableauToucheJoueur.push(0);
+					comparaison();
+					return;
+				}, 500)
+			}
+			if (tableauToucheJoueur.length >= 1)
+			{
+				nombreToucheTotale += 1;
+				synth.triggerAttackRelease('C7', '8n');
+				for (let i = 0; i < col1Style.length; i++) {
+					col3Style[i].style.backgroundColor = 'rgb(0, 99, 0)';
+				}
+				setTimeout(function () {
+					finCouleurs();
+					tableauToucheJoueur.pop();
+					tableauToucheJoueur.push(3);
+					tableauToucheJoueur.push(0);
+					comparaison();
+					return;
+				}, 500)
+			}
+	
+		});
+	
+		/*Le joueur appuie sur le boutton bleu*/
+		col4.addEventListener("click", () => {
+			if(tableauToucheJoueur.length < 1)
+			{
+				nombreToucheTotale += 1;
+				synth.triggerAttackRelease('C8', '8n');
+				for (let i = 0; i < col1Style.length; i++) {
+					col4Style[i].style.backgroundColor = 'rgb(4, 1, 175)';
+				}
+				setTimeout(function () {
+					finCouleurs();
+					tableauToucheJoueur.push(4);
+					tableauToucheJoueur.push(0);
+					comparaison();
+					return;
+				}, 500)
+			}
+			if (tableauToucheJoueur.length >= 1)
+			{
+				nombreToucheTotale += 1;
+				synth.triggerAttackRelease('C8', '8n');
+				for (let i = 0; i < col1Style.length; i++) {
+					col4Style[i].style.backgroundColor = 'rgb(4, 1, 175)';
+				}
+				setTimeout(function () {
+					finCouleurs();
+					tableauToucheJoueur.pop();
+					tableauToucheJoueur.push(4);
+					tableauToucheJoueur.push(0);
+					comparaison();
+					return;
+				}, 500)
+			}
+	
+		});
+	
 	
 
-	col3.addEventListener("click", function (){
-
-		if (listeS.length === 0){
-			return;
+		/*Fait apparaitre les couleurs de la liste au joueur*/
+		async function jeuxSound(liste) {
+			await liste.forEach((element, index) => {
+				 setTimeout(function () {
+					finCouleurs();
+					sonEtCouleur(element);
+				}, index * 500);
+			});
 		}
-		tableauToucheJoueur.push(3);
-		alert(tableauToucheJoueur);
-	});
 	
-
-	col4.addEventListener("click", function (){
-
-		if (listeS.length === 0){
-			return;
-		}
-		tableauToucheJoueur.push(4);
-		alert(tableauToucheJoueur);
-	});
-	
-	
-
-
 
 	/*Joue les sons et les couleurs*/
 	function sonEtCouleur (elementForeach){
+		
 		if (elementForeach === 1) {
 			synth.triggerAttackRelease('B4', '8n');
 			for (let i = 0; i < col1Style.length; i++) {
@@ -160,3 +271,30 @@ export async function GAME() {
 	}
 	/*-----------------------------------------*/
 }
+
+
+async function comparaison(){
+
+	let i = 0;
+	if(tableauToucheJoueur.length === listeS.length)
+	{
+		tableauToucheJoueur.forEach(leTableau => {
+			//Défaite
+			if (tableauToucheJoueur[i] != listeS[i]){
+				alert("Fin de la partie");
+				toucheMax.innerHTML = "Nombre de touche : " + nombreToucheTotale;
+				tourMax.innerHTML = "Nombre de tour : " + nombreTourTotale;
+				return true;
+			}
+			i++;
+			//Victoire
+			if(i === listeS.length)
+			{
+				tableauToucheJoueur = [];
+				tourMax += 1;
+				nombreToucheTotale += 1;
+			}
+
+		});
+	}
+	}
