@@ -1,6 +1,11 @@
-import "./couleur";
-import { GAME, ordinateurPlay } from "./couleur";
+/*import "./couleur";
+import { GAME, ordinateurPlay } from "./couleur";*/
 /*Lance la partie*/
+import { GAME } from "./couleur";
+import "./teste";
+import { jeux } from "./teste";
+
+
 
 
 const statusPartie = document.getElementById("stat");

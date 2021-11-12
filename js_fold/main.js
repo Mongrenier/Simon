@@ -6,7 +6,9 @@ import "./start";
 /*Js pour arreter la partie*/
 import "./restart";
 /*Js qui gère les élements de couleur*/
-import "./couleur"
+import "./couleur";
+/*Teste*/
+import "./teste";
 
 
 
