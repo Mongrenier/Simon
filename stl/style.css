@@ -1,200 +1,196 @@
 @import url('https://fonts.googleapis.com/css2?family=Yuji+Syuku&display=swap');
 
-
 /* Modale */
-.interrogation{
-  margin-left: 90%;
-  float:right;
-  cursor: pointer;
+.interrogation {
+	margin-left: 90%;
+	float: right;
+	cursor: pointer;
 }
 
-.fermer{
-  float: right;
-  cursor: pointer;
-  font-size: 30px;
+.fermer {
+	float: right;
+	cursor: pointer;
+	font-size: 30px;
 }
 
 .modal {
-  display: none;
-  position: fixed;
-  z-index: 1;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: rgb(0,0,0);
-  background-color: rgba(0,0,0,0.4);
+	display: none;
+	position: fixed;
+	z-index: 1;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+	background-color: rgb(0, 0, 0);
+	background-color: rgba(0, 0, 0, 0.4);
 }
 
 .modal-content {
-  background-color: #fefefe;
-  margin: 15% auto;
-  padding: 20px;
-  border: 1px solid #888;
-  border-radius: 15px;
-  width: 80%;
+	background-color: #fefefe;
+	margin: 15% auto;
+	padding: 20px;
+	border: 1px solid #888;
+	border-radius: 15px;
+	width: 80%;
 }
 
-
-.GameOver{
-  display: none;
-  position: fixed;
-  z-index: 1;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: rgb(0,0,0);
-  background-color: rgba(0,0,0,0.4);
+.GameOver {
+	display: none;
+	position: fixed;
+	z-index: 1;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+	background-color: rgb(0, 0, 0);
+	background-color: rgba(0, 0, 0, 0.4);
 }
 
-.modalOver{
-  background-color: #fefefe;
-  margin: 15% auto;
-  padding: 20px;
-  border: 1px solid #888;
-  border-radius: 15px;
-  width: 80%;
+.modalOver {
+	background-color: #fefefe;
+	margin: 15% auto;
+	padding: 20px;
+	border: 1px solid #888;
+	border-radius: 15px;
+	width: 80%;
 }
 
 /*Gère l'élement de status du joueur (si il joue ou non)*/
-#stat{
-  color: red;
+#stat {
+	color: red;
 }
 
 /* Gère les couleurs*/
-.ensemble{
-margin-left: 30%;
+.ensemble {
+	margin-left: 30%;
 }
 
-.couleur1{
-  background-color: red;
-  margin-top: 15%;
-  width: 150px;
-  height: 250px;
-  cursor: pointer;
-  display: inline-block;
+.couleur1 {
+	background-color: red;
+	margin-top: 15%;
+	width: 150px;
+	height: 250px;
+	cursor: pointer;
+	display: inline-block;
 }
 
-.couleur1:hover{
-  background-color: rgb(199, 0, 0);
-  margin-top: 15%;
-  width: 150px;
-  height: 250px;
-  cursor: pointer;
-  display: inline-block;
+.couleur1:hover {
+	background-color: rgb(199, 0, 0);
+	margin-top: 15%;
+	width: 150px;
+	height: 250px;
+	cursor: pointer;
+	display: inline-block;
 }
 
-.couleur2{
-  background-color: yellow;
-  width: 150px;
-  height: 250px;
-  cursor: pointer;
-  display: inline-block;
+.couleur2 {
+	background-color: yellow;
+	width: 150px;
+	height: 250px;
+	cursor: pointer;
+	display: inline-block;
 }
 
-.couleur2:hover{
-  background-color: rgb(214, 211, 0);
-  width: 150px;
-  height: 250px;
-  cursor: pointer;
-  display: inline-block;
+.couleur2:hover {
+	background-color: rgb(214, 211, 0);
+	width: 150px;
+	height: 250px;
+	cursor: pointer;
+	display: inline-block;
 }
 
-.couleur3{
-  background-color: green;
-  width: 150px;
-  height: 250px;
-  cursor: pointer;
-  display: inline-block;
+.couleur3 {
+	background-color: green;
+	width: 150px;
+	height: 250px;
+	cursor: pointer;
+	display: inline-block;
 }
 
-.couleur3:hover{
-  background-color: rgb(0, 99, 0);
-  width: 150px;
-  height: 250px;
-  cursor: pointer;
-  display: inline-block;
+.couleur3:hover {
+	background-color: rgb(0, 99, 0);
+	width: 150px;
+	height: 250px;
+	cursor: pointer;
+	display: inline-block;
 }
 
-.couleur4{
-  background-color: blue;
-  width: 150px;
-  height: 250px;
-  cursor: pointer;
-  display: inline-block;
+.couleur4 {
+	background-color: blue;
+	width: 150px;
+	height: 250px;
+	cursor: pointer;
+	display: inline-block;
 }
 
-.couleur4:hover{
-  background-color: rgb(4, 1, 175);
-  width: 150px;
-  height: 250px;
-  cursor: pointer;
-  display: inline-block;
+.couleur4:hover {
+	background-color: rgb(4, 1, 175);
+	width: 150px;
+	height: 250px;
+	cursor: pointer;
+	display: inline-block;
 }
-
-
 
 /*Boutton commencer & réinitialiser*/
-.toutBoutton{
-  margin-left: 35%;
-  margin-top: 2%;
+.toutBoutton {
+	margin-left: 35%;
+	margin-top: 2%;
 }
 
-.but1{
-  background-color: white;
-  color: black;
-  width: 200px;
-  height: 60px;
-  cursor: pointer;
-  border-radius: 5px;
-  border: solid 2px black;
+.boutonCommencer {
+	background-color: white;
+	color: black;
+	width: 200px;
+	height: 60px;
+	cursor: pointer;
+	border-radius: 5px;
+	border: solid 2px black;
 }
 
-.but1:hover{
-  background-color: black;
-  color: white;
+.boutonCommencer:hover {
+	background-color: black;
+	color: white;
 }
 
-.but2{
-  background-color: white;
-  height: 60px;
-  color: black;
-  width: 200px;
-  cursor: pointer;
-  border-radius: 5px;
-  border: solid 2px black;
+.boutonRecommencer {
+	background-color: white;
+	height: 60px;
+	color: black;
+	width: 200px;
+	cursor: pointer;
+	border-radius: 5px;
+	border: solid 2px black;
 }
 
-.but2:hover{
-  background-color: black;
-  color: white;
+.boutonRecommencer:hover {
+	background-color: black;
+	color: white;
 }
 
-#finPartie{
-  text-align: center;
+#finPartie {
+	text-align: center;
 }
 
-#tour{
-  margin-top: 2%;
+#tour {
+	margin-top: 2%;
 }
 
-#bouttonRecommencer{
-  background-color: white;
-  color: black;
-  width: 200px;
-  height: 60px;
-  cursor: pointer;
-  border-radius: 5px;
-  border: solid 2px black;
-  margin-left: 50%;
-  transform: translate(-50%);
+#bouttonRecommencer {
+	background-color: white;
+	color: black;
+	width: 200px;
+	height: 60px;
+	cursor: pointer;
+	border-radius: 5px;
+	border: solid 2px black;
+	margin-left: 50%;
+	transform: translate(-50%);
 }
 
-#resultatDirect{
-  font-size: 25px;
-  margin: auto;
-  font-family: 'Yuji Syuku', serif;
+#resultatDirect {
+	font-size: 25px;
+	margin: auto;
+	font-family: 'Yuji Syuku', serif;
 }

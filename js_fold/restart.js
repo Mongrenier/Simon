@@ -2,11 +2,16 @@
 
 import { GAME, remiseAZero } from "./couleur";
 
-const bouttonReinitialiser = document.getElementsByClassName("but2")[0];
+const bouttonReinitialiser = document.getElementsByClassName("boutonRecommencer")[0];
 const statusPartie = document.getElementById("stat");
 
 
 bouttonReinitialiser.addEventListener("click", () => {
+	const bouttonComfirmerStyle = document.getElementsByClassName('boutonCommencer');
+
+	for (let i = 0; i < bouttonComfirmerStyle.length; i++) {
+		bouttonComfirmerStyle[i].style.display = 'none';
+	}
 
 remiseAZero();
 GAME();
