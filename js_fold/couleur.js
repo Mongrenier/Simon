@@ -1,11 +1,12 @@
 /*Permet l'utilisation du son*/
 import * as Tone from 'tone';
+import { finDePartie } from './modale';
 
 /*Permet de récupérer les élements couleur pour mettre des event*/
-const col1 = document.getElementsByClassName('couleur1')[0];
-const col2 = document.getElementsByClassName('couleur2')[0];
-const col3 = document.getElementsByClassName('couleur3')[0];
-const col4 = document.getElementsByClassName('couleur4')[0];
+const couleur1 = document.getElementsByClassName('couleur1')[0];
+const couleur2 = document.getElementsByClassName('couleur2')[0];
+const couleur3 = document.getElementsByClassName('couleur3')[0];
+const couleur4 = document.getElementsByClassName('couleur4')[0];
 
 /*Permet de changer les scores*/
 let toucheMax = document.getElementById('touche');
@@ -15,6 +16,9 @@ const col1Style = document.getElementsByClassName('couleur1');
 const col2Style = document.getElementsByClassName('couleur2');
 const col3Style = document.getElementsByClassName('couleur3');
 const col4Style = document.getElementsByClassName('couleur4');
+
+/*Permet d'afficher si c'est l'ordinateur ou le joueur qui doit jouer*/
+const statusPartie = document.getElementById("stat");
 
 /*Permet de faire jouer les sons de synthe*/
 const synth = new Tone.PolySynth(Tone.Synth).toDestination();
@@ -27,6 +31,7 @@ let debutPartie = false;
 let nombreToucheTotale = 0;
 let nombreTourTotale = 0;
 let difficulte = 700;
+let tourdifficulte  = 0;
 
 export async function GAME() {
 	/*creationListe(listeS);*/
@@ -60,7 +65,7 @@ function creationListe() {
 }
 
 /*Le joueur appuie sur le boutton Rouge*/
-col1.addEventListener('click', () => {
+couleur1.addEventListener('click', () => {
 	if (tableauToucheJoueur.length < 1) {
 		nombreToucheTotale += 1;
 		synth.triggerAttackRelease('B4', '8n');
@@ -93,11 +98,11 @@ col1.addEventListener('click', () => {
 });
 
 /*Le joueur appuie sur le boutton jaune*/
-col2.addEventListener('click', () => {
+couleur2.addEventListener('click', () => {
 	if (tableauToucheJoueur.length < 1) {
 		nombreToucheTotale += 1;
 		synth.triggerAttackRelease('C6', '8n');
-		for (let i = 0; i < col1Style.length; i++) {
+		for (let i = 0; i < col2Style.length; i++) {
 			col2Style[i].style.backgroundColor = 'rgb(214, 211, 0)';
 		}
 		setTimeout(function () {
@@ -111,7 +116,7 @@ col2.addEventListener('click', () => {
 	if (tableauToucheJoueur.length >= 1) {
 		nombreToucheTotale += 1;
 		synth.triggerAttackRelease('C6', '8n');
-		for (let i = 0; i < col1Style.length; i++) {
+		for (let i = 0; i < col2Style.length; i++) {
 			col2Style[i].style.backgroundColor = 'rgb(214, 211, 0)';
 		}
 		setTimeout(function () {
@@ -126,11 +131,11 @@ col2.addEventListener('click', () => {
 });
 
 /*Le joueur appuie sur le boutton vert*/
-col3.addEventListener('click', () => {
+couleur3.addEventListener('click', () => {
 	if (tableauToucheJoueur.length < 1) {
 		nombreToucheTotale += 1;
 		synth.triggerAttackRelease('C7', '8n');
-		for (let i = 0; i < col1Style.length; i++) {
+		for (let i = 0; i < col3Style.length; i++) {
 			col3Style[i].style.backgroundColor = 'rgb(0, 99, 0)';
 		}
 		setTimeout(function () {
@@ -144,7 +149,7 @@ col3.addEventListener('click', () => {
 	if (tableauToucheJoueur.length >= 1) {
 		nombreToucheTotale += 1;
 		synth.triggerAttackRelease('C7', '8n');
-		for (let i = 0; i < col1Style.length; i++) {
+		for (let i = 0; i < col3Style.length; i++) {
 			col3Style[i].style.backgroundColor = 'rgb(0, 99, 0)';
 		}
 		setTimeout(function () {
@@ -159,11 +164,11 @@ col3.addEventListener('click', () => {
 });
 
 /*Le joueur appuie sur le boutton bleu*/
-col4.addEventListener('click', () => {
+couleur4.addEventListener('click', () => {
 	if (tableauToucheJoueur.length < 1) {
 		nombreToucheTotale += 1;
 		synth.triggerAttackRelease('C8', '8n');
-		for (let i = 0; i < col1Style.length; i++) {
+		for (let i = 0; i < col4Style.length; i++) {
 			col4Style[i].style.backgroundColor = 'rgb(4, 1, 175)';
 		}
 		setTimeout(function () {
@@ -177,7 +182,7 @@ col4.addEventListener('click', () => {
 	if (tableauToucheJoueur.length >= 1) {
 		nombreToucheTotale += 1;
 		synth.triggerAttackRelease('C8', '8n');
-		for (let i = 0; i < col1Style.length; i++) {
+		for (let i = 0; i < col4Style.length; i++) {
 			col4Style[i].style.backgroundColor = 'rgb(4, 1, 175)';
 		}
 		setTimeout(function () {
@@ -199,7 +204,10 @@ function jeuxSound(liste) {
 			sonEtCouleur(element);
 		}, index * difficulte);
 	});
-	difficulte -= 100;
+	if(tourdifficulte != 8){
+		difficulte -= 50;
+		tourdifficulte++;
+	}
 }
 
 /*Joue les sons et les couleurs*/
@@ -212,19 +220,19 @@ function sonEtCouleur(elementForeach) {
 	}
 	if (elementForeach === 2) {
 		synth.triggerAttackRelease('C6', '8n');
-		for (let i = 0; i < col1Style.length; i++) {
+		for (let i = 0; i < col2Style.length; i++) {
 			col2Style[i].style.backgroundColor = 'rgb(214, 211, 0)';
 		}
 	}
 	if (elementForeach === 3) {
 		synth.triggerAttackRelease('C7', '8n');
-		for (let i = 0; i < col1Style.length; i++) {
+		for (let i = 0; i < col3Style.length; i++) {
 			col3Style[i].style.backgroundColor = 'rgb(0, 99, 0)';
 		}
 	}
 	if (elementForeach === 4) {
 		synth.triggerAttackRelease('C8', '8n');
-		for (let i = 0; i < col1Style.length; i++) {
+		for (let i = 0; i < col4Style.length; i++) {
 			col4Style[i].style.backgroundColor = 'rgb(4, 1, 175)';
 		}
 	}
@@ -238,15 +246,11 @@ async function comparaison() {
 		tableauToucheJoueur.forEach(leTableau => {
 			//Défaite
 			if (tableauToucheJoueur[i] != listeS[i]) {
-				if (nombreToucheTotale - 1 < 1)
-				{
-					toucheMax.innerHTML = 'Nombre de touche : 0'
-					tourMax.innerHTML = 'Nombre de tour : ' + nombreTourTotale;
-					return;
-				}
-				toucheMax.innerHTML = 'Nombre de touche : ' + nombreToucheTotale;
-				tourMax.innerHTML = 'Nombre de tour : ' + nombreTourTotale;
+
+				finDePartie(nombreToucheTotale, nombreTourTotale);
+				remiseAZero();
 				return;
+
 			}
 			i++;
 		});
@@ -255,7 +259,7 @@ async function comparaison() {
 			tableauToucheJoueur = [];
 			nombreTourTotale += 1;
 			setTimeout(() => {
-				creationListe();
+				ordinateurPlay();
 			}, 1000);
 		}
 	}
@@ -266,14 +270,26 @@ function finCouleurs() {
 	for (let i = 0; i < col1Style.length; i++) {
 		col1Style[i].style.backgroundColor = 'red';
 	}
-	for (let i = 0; i < col1Style.length; i++) {
+	for (let i = 0; i < col2Style.length; i++) {
 		col2Style[i].style.backgroundColor = 'yellow';
 	}
-	for (let i = 0; i < col1Style.length; i++) {
+	for (let i = 0; i < col3Style.length; i++) {
 		col3Style[i].style.backgroundColor = 'green';
 	}
-	for (let i = 0; i < col1Style.length; i++) {
+	for (let i = 0; i < col4Style.length; i++) {
 		col4Style[i].style.backgroundColor = 'blue';
 	}
 }
 /*-----------------------------------------*/
+
+export function remiseAZero(){
+	tableauToucheJoueur = [];
+	listeS = [];
+	nombreAleatoire = 0;
+	debutPartie = false;
+	nombreToucheTotale = 0;
+	nombreTourTotale = 0;
+	difficulte = 700;
+	tourdifficulte  = 0;
+
+}

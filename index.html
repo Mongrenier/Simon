@@ -10,13 +10,26 @@
 </head>
 <body>
 
-  <div id="myModal" class="modal">
+ 
+
+<div id="myModal" class="modal">
   <div class="modal-content">
     <div class="fermer">&times;</div>
-    <p>Voici les règle du Simon Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit, incidunt illum totam natus architecto quia! Aperiam quas, et ipsa dolores voluptate sint nihil assumenda provident praesentium eius alias minima similique!</p>
+    <p>Voici les règles du Simon : lorsque vous allez appuyer sur le bouton "Commencer", une couleur avec va apparaitre et un son va retentir, il vous suffit de recopier le son et la couleur en appuyant sur l'une des couleurs présente. La difficulté augmentera au fur et à mesure que la partie avance.</p><br>
+    <p>Le jeu attendra que vous ayez reproduit le même nombre de couleurs que lui avant de vous indiquer si vous avez fait une erreur ou non. En cas d'erreur les scores s'afficheront au centre de votre écran avec la possibilité de recommencer.</p><br>
+    <p>ATTENTION : Merci de laisser l'ordinateur jouer avant de presser une couleur. Si c'est votre tour de jouer, laisser un peu de temps entre chaque touche de couleur sans quoi le jeu ne fonctionnera plus.</p><br>
+    <p>Bon jeux !</p>
   </div>
 </div>
 
+<div id="modaleGameOver" class="GameOver">
+  <div class="modalOver">
+    <h1 id="finPartie">GAMEOVER</h1><br>
+    <p id="touche">/</p>
+    <p id="tour"></p><br><br>
+    <input type="button" id="bouttonRecommencer" value="Recommencer">
+  </div>
+</div>
 
   <img src="image/Pinter.png" width="50px" height="50px" class="interrogation">
 
@@ -29,14 +42,11 @@
 </div>
 <div class="toutBoutton">
 <input type="button" name="com" class="but1" value="Commencer">
-<input type="button" name="rn" class="but2" value="Réinitialiser">
+<input type="button" name="com" class="but2" value="Recommencer">
 </div>
 
-<div id="classement">
-  <h1>Résultats</h1>
-  <p id="touche">Nombre de touche : </p>
-  <p id="tour">Nombre de tour : </p>
-</div>
+
+
 <script src="js_fold/main.js" type="module"></script>
 </body>
 </html>

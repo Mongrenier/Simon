@@ -33,6 +33,29 @@
   width: 80%;
 }
 
+
+.GameOver{
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0,0.4);
+}
+
+.modalOver{
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  border-radius: 15px;
+  width: 80%;
+}
+
 /*Gère l'élement de status du joueur (si il joue ou non)*/
 #stat{
   color: red;
@@ -147,3 +170,22 @@ margin-left: 30%;
   color: white;
 }
 
+#finPartie{
+  text-align: center;
+}
+
+#tour{
+  margin-top: 2%;
+}
+
+#bouttonRecommencer{
+  background-color: white;
+  color: black;
+  width: 200px;
+  height: 60px;
+  cursor: pointer;
+  border-radius: 5px;
+  border: solid 2px black;
+  margin-left: 50%;
+  transform: translate(-50%);
+}

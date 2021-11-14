@@ -19,13 +19,11 @@ bouttonComfirmer.addEventListener("click", () =>{
   for (let i = 0; i < bouttonComfirmerStyle.length; i++) {
     bouttonComfirmerStyle[i].style.display = 'none';
   }
-  
+
   statusPartie.innerHTML = "Status : En cours";
   statusPartie.style.color = "green";
-
-  /*----------------------------*/
+/*Commencer la partie*/
   GAME();
-  /*----------------------------*/
 
   });
   
