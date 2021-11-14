@@ -20,12 +20,16 @@ const col4Style = document.getElementsByClassName('couleur4');
 /*Permet d'afficher si c'est l'ordinateur ou le joueur qui doit jouer*/
 const statusPartie = document.getElementById("stat");
 
+/*Permet d'afficher les éléments en direct*/
+let nombreToucheDirect = document.getElementById("nombreToucheDirect");
+let nombreTourDirect = document.getElementById("nombreTourDirect");
+
 /*Permet de faire jouer les sons de synthe*/
 const synth = new Tone.PolySynth(Tone.Synth).toDestination();
 const now = Tone.now();
 
 let tableauToucheJoueur = [];
-let listeS = [];
+let listeOrdinateur = [];
 let nombreAleatoire = 0;
 let debutPartie = false;
 let nombreToucheTotale = 0;
@@ -34,31 +38,32 @@ let difficulte = 700;
 let tourdifficulte  = 0;
 
 export async function GAME() {
-	/*creationListe(listeS);*/
+	/*creationListe(listeOrdinateur);*/
 	ordinateurPlay();
 }
+try{
 /*Odinateur*/
 function ordinateurPlay() {
-	creationListe(listeS);
+	creationListe(listeOrdinateur);
 }
 
 function creationListe() {
 	
 		/*enleve le 0 du tableau*/
-		if (listeS.length >= 2) {
-			listeS.pop();
+		if (listeOrdinateur.length >= 2) {
+			listeOrdinateur.pop();
 			nombreAleatoire = Math.floor(Math.random() * (4 - 1 + 1) + 1);
-			listeS.push(nombreAleatoire);
-			listeS.push(0);
-			jeuxSound(listeS);
+			listeOrdinateur.push(nombreAleatoire);
+			listeOrdinateur.push(0);
+			jeuxSound(listeOrdinateur);
 	
 		}
 
-	if (listeS.length < 1) {
+	if (listeOrdinateur.length < 1) {
 		nombreAleatoire = Math.floor(Math.random() * (4 - 1 + 1) + 1);
-		listeS.push(nombreAleatoire);
-		listeS.push(0);
-		jeuxSound(listeS);
+		listeOrdinateur.push(nombreAleatoire);
+		listeOrdinateur.push(0);
+		jeuxSound(listeOrdinateur);
 
 	}
 
@@ -239,23 +244,24 @@ function sonEtCouleur(elementForeach) {
 }
 
 
-
+/*Sert à comparer les couleurs du joueur avec les couleurs de l'ordinateur*/
 async function comparaison() {
-	let i = 0;
-	if (tableauToucheJoueur.length === listeS.length) {
+	let verificationTailleTableau = 0;
+
+	if (tableauToucheJoueur.length === listeOrdinateur.length) {
 		tableauToucheJoueur.forEach(leTableau => {
 			//Défaite
-			if (tableauToucheJoueur[i] != listeS[i]) {
+			if (tableauToucheJoueur[verificationTailleTableau] != listeOrdinateur[verificationTailleTableau]) {
 
 				finDePartie(nombreToucheTotale, nombreTourTotale);
 				remiseAZero();
 				return;
 
 			}
-			i++;
+			verificationTailleTableau++;
 		});
 		//Victoire
-		if (i === listeS.length) {
+		if (verificationTailleTableau === listeOrdinateur.length) {
 			tableauToucheJoueur = [];
 			nombreTourTotale += 1;
 			setTimeout(() => {
@@ -263,6 +269,8 @@ async function comparaison() {
 			}, 1000);
 		}
 	}
+	nombreToucheDirect.innerHTML = "Nombre de touche : " + nombreToucheTotale;
+	nombreTourDirect.innerHTML = "Nombre de tour : " + nombreTourTotale;
 }
 
 /*Remet les couleurs par défaut*/
@@ -282,14 +290,25 @@ function finCouleurs() {
 }
 /*-----------------------------------------*/
 
+
+/*Remet la partie entierement à zero*/
+}
+catch(n){
+	console.error(n);
+}
+
+
 export function remiseAZero(){
 	tableauToucheJoueur = [];
-	listeS = [];
+	listeOrdinateur = [];
 	nombreAleatoire = 0;
 	debutPartie = false;
 	nombreToucheTotale = 0;
 	nombreTourTotale = 0;
 	difficulte = 700;
 	tourdifficulte  = 0;
+
+	nombreToucheDirect.innerHTML = "Nombre de touche : 0";
+	nombreTourDirect.innerHTML = "Nombre de tour : 0";
 
 }

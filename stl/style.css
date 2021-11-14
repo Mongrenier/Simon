@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Yuji+Syuku&display=swap');
+
+
 /* Modale */
 .interrogation{
   margin-left: 90%;
@@ -188,4 +191,10 @@ margin-left: 30%;
   border: solid 2px black;
   margin-left: 50%;
   transform: translate(-50%);
+}
+
+#resultatDirect{
+  font-size: 25px;
+  margin: auto;
+  font-family: 'Yuji Syuku', serif;
 }
